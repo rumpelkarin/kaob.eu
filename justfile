@@ -17,7 +17,7 @@ build: clean npm-build
         --ignoreCache
 
 deploy: build
-    rsync -avz --delete public/ deploy@almstueberlmusi.at:/srv/http/deploy/almstueberlmusi.at
+    rsync -avz --delete public/ deploy@kaob.eu:/srv/http/deploy/kaob.eu
 
 serve: clean npm-build
     podman run \
@@ -40,6 +40,3 @@ clean:
 
 podman-pull:
     podman pull ghcr.io/gohugoio/hugo:latest
-
-update-events:
-    ./scripts/update-events.py > content/veranstaltungen.md

@@ -3,7 +3,7 @@ title: Impressum
 ---
 
 Karin Oberauer  
-Rupergasse 2  
+Rupertgasse 2  
 5550 Radstadt  
 Österreich
 
@@ -15,6 +15,6 @@ E-Mail: karinoberauer99@gmail.com
 ## Verantwortlich für den Inhalt
 
 Karin Oberauer  
-Rupergasse 2  
-5550 Radstadt
+Rupertgasse 2  
+5550 Radstadt  
 Österreich
