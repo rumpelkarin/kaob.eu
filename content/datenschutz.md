@@ -2,7 +2,7 @@
 title: Datenschutzerklärung
 ---
 
-Stand: 07. Juni 2025
+Stand: 01. Jänner 2026
 
 ## Verantwortlicher
 
@@ -12,6 +12,4 @@ Gräfelfinger Straße 169a
 Deutschland, Bayern
 
 **E-Mail-Adresse**: stefan.tatschner@mailbox.org  
-**Impressum**: https://almstueberlmusi.at/impressum/
-
-
+**Impressum**: https://kaob.eu/impressum/
