@@ -1,0 +1,26 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+{{- with or .Description .Summary site.Params.description | plainify | htmlUnescape }}
+  <meta name="description" content="{{ trim . "\n\r\t " }}">
+{{- end }}
+
+{{ with $favicon := resources.Get "favicon.png" }}
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ ( $favicon.Fill "16x16" ).RelPermalink }}">
+  <link rel="icon" type="image/png" sizes="48x48" href="{{ ( $favicon.Fill "48x48" ).RelPermalink }}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ ( $favicon.Fill "192x192" ).RelPermalink }}">
+{{ end -}}
+
+{{ with $favicon := resources.Get "favicon.svg" }}
+  <link rel="icon" href="{{ $favicon.RelPermalink }}">
+{{ end -}}
+
+{{ partial "opengraph.html" . }}
+{{ partial "schema.html" . }}
+{{ partial "twitter_cards.html" . }}
+
+{{ partial "head/css.html" . }}
+{{ partial "head/js.html" . }}
+
+{{ hugo.Generator }}

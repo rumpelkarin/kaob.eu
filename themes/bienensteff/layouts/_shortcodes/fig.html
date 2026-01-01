@@ -1,0 +1,49 @@
+{{ $imgOrig := .Page.Resources.GetMatch (.Get "src") }}
+
+{{ $sizes := slice "400x" "800x" "1200x" }}
+{{ $images := dict }}
+{{ $hasExif := false }}
+
+{{ with $imgOrig.Exif }}
+  {{ $hasExif = true }}
+{{ end }}
+
+{{ range $s := $sizes }}
+  {{ $img := $imgOrig.Resize (print $s " webp") }}
+  {{ if $hasExif }}
+    {{ $orientation := $imgOrig.Exif.Tags.Orientation }}
+    {{ if eq $orientation 6 }}
+      {{ $img = $img.Resize (printf "%dx%d r270" $img.Height $img.Width) }}
+    {{ else if eq $orientation 8 }}
+      {{ $img = $img.Resize (printf "%dx%d r90" $img.Height $img.Width) }}
+    {{ end }}
+  {{ end }}
+
+  {{ $pair := dict $s $img }}
+  {{ $images = merge $images $pair }}
+{{ end }}
+
+{{ $imgDefault := index $images "1200x" }}
+
+<div class="d-flex justify-content-center">
+  <figure class="figure {{ with .Get "class" }}{{ . }}{{ end }}">
+    <a href="{{ $imgOrig.Permalink }}">
+      <img
+        class="figure-img img-fluid rounded"
+        src="{{ $imgDefault.RelPermalink }}"
+        srcset="
+          {{ (index $images "400x").RelPermalink }} 400w,
+          {{ (index $images "800x").RelPermalink }} 800w,
+          {{ (index $images "1200x").RelPermalink }} 1200w
+        "
+        sizes="(max-width: 768px) 100vw, 800px"
+        alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
+        {{ with .Get "loading" }}loading="{{ . }}"{{ else }}loading="lazy"{{ end }}>
+    </a>
+    {{ with .Get "caption" }}
+      <figcaption class="figure-caption text-center">
+        {{ . | markdownify }}
+      </figcaption>
+    {{ end }}
+  </figure>
+</div>

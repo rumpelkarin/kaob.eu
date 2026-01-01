@@ -1,0 +1,44 @@
+baseURL = 'https://kaob.eu'
+languageCode = 'de-at'
+title = 'Karin Oberauer'
+theme = "bienensteff"
+
+[params.main]
+  img = "avatar.jpg"
+  icon = "avatar.jpg"
+
+[[menus.footer]]
+name = 'Impressum'
+pageRef = '/impressum'
+weight = 20
+
+[[menus.footer]]
+name = 'Datenschutz'
+pageRef = '/datenschutz'
+weight = 30
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.typographer]
+        apostrophe = '&rsquo;'
+        disable = false
+        ellipsis = '&hellip;'
+        emDash = '&mdash;'
+        enDash = '&ndash;'
+        leftAngleQuote = '&laquo;'
+        leftDoubleQuote = '„'
+        leftSingleQuote = '‚'
+        rightAngleQuote = '&raquo;'
+        rightDoubleQuote = '”'
+        rightSingleQuote = '‘' 
+
+[imaging]
+  quality = 97
+  resampleFilter = "Lanczos"
